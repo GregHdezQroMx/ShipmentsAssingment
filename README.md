@@ -1,2 +1,2 @@
-# ShipmentsAssingment
-Shipments Assingment to Drivers by Suitable Score Algoritm
+# ShipmentsAssignment
+Shipments Assignment to Drivers by Suitable Score Algoritm

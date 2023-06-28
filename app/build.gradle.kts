@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.jght.shipmentsassingment"
+    namespace = "com.jght.shipmentsAssignment"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.jght.shipmentsassingment"
+        applicationId = "com.jght.shipmentsAssignment"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
