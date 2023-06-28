@@ -11,7 +11,7 @@ class SaveServerSettingsUseCase: KoinComponent {
 
     private val settingsRepository: SettingsRepository by inject()
 
-    operator fun invoke(serverSettings: ServerSettings) {
+    suspend operator fun invoke(serverSettings: ServerSettings) {
 
         settingsRepository.saveServerSettings(serverSettings = serverSettings)
     }

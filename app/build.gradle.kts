@@ -65,6 +65,8 @@ dependencies {
     implementation(libs.datastore.preferences)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.navigation.compose)
+    implementation(libs.lifecycle.viewmodel.ktx)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)

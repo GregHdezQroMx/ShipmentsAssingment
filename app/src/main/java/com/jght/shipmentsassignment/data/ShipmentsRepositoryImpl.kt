@@ -5,7 +5,6 @@ import com.jght.shipmentsassignment.domain.models.Shipments
 import com.jght.shipmentsassignment.domain.models.ShipmentsDataSourceOrigin
 import com.jght.shipmentsassignment.framework.datasourceimpl.shipments.ShipmentsApiDataSource
 import com.jght.shipmentsassignment.framework.datasourceimpl.shipments.ShipmentsFileDataSource
-import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -16,7 +15,7 @@ class ShipmentsRepositoryImpl: ShipmentsRepository, KoinComponent {
     private val shipmentsFileDataSource: ShipmentsFileDataSource by inject()
     private val shipmentsApiDataSource: ShipmentsApiDataSource by inject()
 
-    override fun getAllShipments(source: ShipmentsDataSourceOrigin): Flow<List<Shipment>> {
+    override suspend fun getAllShipments(source: ShipmentsDataSourceOrigin): Shipments {
 
         return when (source) {
             ShipmentsDataSourceOrigin.Local -> {
@@ -28,7 +27,7 @@ class ShipmentsRepositoryImpl: ShipmentsRepository, KoinComponent {
         }
     }
 
-    override fun getAllDrivers(source: ShipmentsDataSourceOrigin): Flow<List<Driver>> {
+    override suspend fun getAllDrivers(source: ShipmentsDataSourceOrigin): Drivers {
 
         return when (source) {
             ShipmentsDataSourceOrigin.Local -> {

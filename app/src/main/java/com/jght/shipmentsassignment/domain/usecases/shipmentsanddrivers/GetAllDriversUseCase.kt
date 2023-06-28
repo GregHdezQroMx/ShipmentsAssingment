@@ -1,9 +1,8 @@
 package com.jght.shipmentsassignment.domain.usecases.shipmentsanddrivers
 
-import com.jght.shipmentsassingment.data.ShipmentsRepository
-import com.jght.shipmentsassingment.domain.models.Driver
-import com.jght.shipmentsassingment.domain.models.ShipmentsDataSourceOrigin
-import kotlinx.coroutines.flow.Flow
+import com.jght.shipmentsassignment.data.ShipmentsRepository
+import com.jght.shipmentsassignment.domain.models.Drivers
+import com.jght.shipmentsassignment.domain.models.ShipmentsDataSourceOrigin
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -13,7 +12,7 @@ class GetAllDriversUseCase: KoinComponent {
 
     private val shipmentsRepository: ShipmentsRepository by inject()
 
-    operator fun invoke(sourceOrigin: ShipmentsDataSourceOrigin): Flow<List<Driver>> {
+    suspend operator fun invoke(sourceOrigin: ShipmentsDataSourceOrigin): Drivers {
         return shipmentsRepository.getAllDrivers(sourceOrigin)
     }
 }

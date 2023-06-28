@@ -9,15 +9,34 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jght.shipmentsAssignment.R
+import com.jght.shipmentsassignment.presentation.settings.viewmodel.SettingsViewModel
 import com.jght.shipmentsassignment.presentation.shipmentsassignment.viewmodel.ShipmentsAssignmentViewModel
+import org.koin.core.component.KoinApiExtension
 
+@OptIn(KoinApiExtension::class)
 @Composable
 fun ShipmentAssignmentScreen(modifier: Modifier) {
 
-    val mainViewModel by lazy { MainViewModel() }
+    val shipmentsAssignmentViewModel by lazy { ShipmentsAssignmentViewModel() }
+    val context = LocalContext.current
+
+    val settingsViewModel: SettingsViewModel = viewModel()
+    settingsViewModel.getRemoteOriginActivated()
+
+    val isDataSourceRemoteOriginActivated by settingsViewModel.isRemoteDataSourceOriginActivated.observeAsState(initial = false)
+    val dataSourceOriginText = if (isDataSourceRemoteOriginActivated) {
+        context.resources.getText(R.string.data_source_remote_origin_text).toString()
+    } else {
+        context.resources.getText(R.string.data_source_local_origin_text).toString()
+    }
 
     val streetNames = listOf(
         "Osinski Manors",
@@ -44,19 +63,21 @@ fun ShipmentAssignmentScreen(modifier: Modifier) {
         "Kaiser Sos"
     )
 
-    val suitabilityScore by mainViewModel.getSuitabilityScore(streetNames[0], driverNames[0]).collectAsState(initial = 0F)
+    val suitabilityScore by shipmentsAssignmentViewModel.getSuitabilityScore(streetNames[0], driverNames[0]).collectAsState(initial = 0F)
 
     ShipmentAssignmentContent(
         modifier = modifier.fillMaxSize(),
         streetName = streetNames[0],
         driverName = driverNames[0],
-        suitabilityScore = suitabilityScore
+        suitabilityScore = suitabilityScore,
+        dataSourceOriginText = dataSourceOriginText
     )
 }
 
 @Composable
 fun ShipmentAssignmentContent(
     modifier: Modifier,
+    dataSourceOriginText: String,
     streetName: String,
     driverName: String,
     suitabilityScore: Float
@@ -67,6 +88,12 @@ fun ShipmentAssignmentContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Text(
+            text = dataSourceOriginText,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.height(32.dp))
 
         Text("Street name: $streetName")
         Spacer(modifier = Modifier.height(8.dp))

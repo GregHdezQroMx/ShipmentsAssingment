@@ -10,8 +10,9 @@ object RetrofitHelper: KoinComponent {
 
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/GregHdezQroMx/ShipmentAssignmentApi/")
+            .baseUrl("https://raw.githubusercontent.com/GregHdezQroMx/ShipmentAssignmentApi/master/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
     }
 }

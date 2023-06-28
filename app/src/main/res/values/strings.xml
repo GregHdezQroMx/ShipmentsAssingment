@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShipmentsAssignment</string>
+    <string name="data_source_local_origin_text">Local data source</string>
+    <string name="data_source_remote_origin_text">Remote data source</string>
 </resources>

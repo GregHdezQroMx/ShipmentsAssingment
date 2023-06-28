@@ -1,20 +1,18 @@
 package com.jght.shipmentsassignment.framework.datasourceimpl.shipments.api
 
-import agency.eas.entregasframmex.data.network.RetrofitHelper
-import com.jght.shipmentsassignment.domain.models.Driver
-import com.jght.shipmentsassignment.domain.models.Shipment
-import kotlinx.coroutines.flow.Flow
+import com.jght.shipmentsassignment.domain.models.Drivers
+import com.jght.shipmentsassignment.domain.models.Shipments
 import retrofit2.Retrofit
 
 class ShipmentsAssignmentServiceImpl: ShipmentsAssignmentService {
 
     private val retrofit: Retrofit = RetrofitHelper.getRetrofit()
 
-    override fun getAllShipments(): Flow<List<Shipment>> {
+    override suspend fun getAllShipments(): Shipments {
         return retrofit.create(ShipmentsAssignmentService::class.java).getAllShipments()
     }
 
-    override fun getAllDrivers(): Flow<List<Driver>> {
+    override suspend fun getAllDrivers(): Drivers {
         return retrofit.create(ShipmentsAssignmentService::class.java).getAllDrivers()
     }
 }

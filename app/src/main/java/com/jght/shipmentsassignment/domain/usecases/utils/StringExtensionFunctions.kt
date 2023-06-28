@@ -14,11 +14,4 @@ fun String.getConsonantCount(): Int {
     return count { consonantsRegex.matches(it.toString()) }
 }
 
-/*
-fun main() {
-    val text = "Hello MY frien"
-    println(text.isEvenLength())
-    println(text.getVowelCount())
-    println(text.getConsonantCount())
-}*/
 

@@ -36,7 +36,7 @@ class GetSuitabilityScoreUseCaseTest {
     @Test
     operator fun invoke() {
 
-        var result = myUseCase.invoke(streetNames[0], driverNames[0])
+        val result = myUseCase.invoke(streetNames[0], driverNames[0])
         assertEquals(11.25F, result)
 
     }

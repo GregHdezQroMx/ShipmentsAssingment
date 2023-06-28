@@ -3,12 +3,11 @@ package com.jght.shipmentsassignment.presentation.ui.widgets
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,24 +23,25 @@ import com.jght.shipmentsassignment.presentation.settings.viewmodel.SettingsView
 import com.jght.shipmentsassignment.presentation.ui.models.MyInputTextModelUI
 
 @Composable
-fun ServerConnectionScreen(
-    modifier: Modifier
+fun ServerConnectionWidget(
+    modifier: Modifier,
+    onSaveServerSettings: () -> Unit
 ) {
 
-    val serverConfigViewModel: ServerConfigViewModel = viewModel()
+    val settingsViewModel: SettingsViewModel = viewModel()
 
     val supportTextIpAddress = "Enter valid IP address"
     val supportTextPortAddress = "Enter valid port"
 
-    val ipAddress by serverConfigViewModel.ipAddress.observeAsState("")
-    val portAddress by serverConfigViewModel.portAddress.observeAsState("")
+    val ipAddress by settingsViewModel.ipAddress.observeAsState("")
+    val portAddress by settingsViewModel.portAddress.observeAsState("")
 
-    val isIpAddressValid by serverConfigViewModel.isIpAddressValid.observeAsState(true)
-    val isPortAddressValid by serverConfigViewModel.isPortAddressValid.observeAsState(true)
+    val isIpAddressValid by settingsViewModel.isIpAddressValid.observeAsState(true)
+    val isPortAddressValid by settingsViewModel.isPortAddressValid.observeAsState(true)
 
     val ipAddressObj = MyInputTextModelUI(
         value = ipAddress,
-        onValueChange = serverConfigViewModel::onIpAddressChange,
+        onValueChange = settingsViewModel::onIpAddressChange,
         isValid = isIpAddressValid,
         label = "Ip Address",
         supportingText = supportTextIpAddress
@@ -49,38 +49,36 @@ fun ServerConnectionScreen(
 
     val portAddressObj = MyInputTextModelUI(
         value = portAddress,
-        onValueChange = serverConfigViewModel::onPortAddressChange,
+        onValueChange = settingsViewModel::onPortAddressChange,
         isValid = isPortAddressValid,
         label = "Port Address",
         supportingText = supportTextPortAddress
     )
 
-    ServerConnectionContent(
+    ServerConnectionWidgetContent(
         modifier = modifier,
         ipAddressObj = ipAddressObj,
         portAddressObj = portAddressObj,
-        onSaveSettings = serverConfigViewModel::onSaveSettings
+        onSaveServerSettings = onSaveServerSettings
     )
 }
 
 @Composable
-fun ServerConnectionContent(
+fun ServerConnectionWidgetContent(
     modifier: Modifier,
     ipAddressObj: MyInputTextModelUI,
     portAddressObj: MyInputTextModelUI,
-    onSaveSettings: () -> Unit
+    onSaveServerSettings: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.wrapContentSize(align = Alignment.Center),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         val focusManager = LocalFocusManager.current
 
-        Text(text = "Server Connection Setting", style = MaterialTheme.typography.titleLarge)
-
-        Spacer(modifier = Modifier.height(32.dp))
+        //Text(text = "Server Connection Setting", style = MaterialTheme.typography.titleLarge)
 
         ipAddressObj.apply {
             MyInputTextField(
@@ -110,7 +108,7 @@ fun ServerConnectionContent(
                 label = label,
                 supportingText = supportingText,
                 keyBoardActions = KeyboardActions(
-                    onDone = { onSaveSettings }
+                    /*onDone = { onSaveSettings }*/
                 ),
                 imeAction = ImeAction.Done
             )
@@ -119,11 +117,10 @@ fun ServerConnectionContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = onSaveSettings,
+            onClick = onSaveServerSettings,
             modifier = Modifier
         ) {
-            Text(text = "Save Settings")
+            Text(text = "Save Server Settings")
         }
     }
-
 }

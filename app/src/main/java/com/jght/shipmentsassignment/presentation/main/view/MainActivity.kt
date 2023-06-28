@@ -20,8 +20,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //MainContent(modifier = Modifier)
-                    ServerConnectionScreen(modifier = Modifier)
+
+                    MainScreen(modifier = Modifier)
                 }
             }
         }

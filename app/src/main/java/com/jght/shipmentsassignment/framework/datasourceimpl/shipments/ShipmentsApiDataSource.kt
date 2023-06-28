@@ -1,14 +1,11 @@
-package com.jght.shipmentsassignment.framework.datasourceimpl.shipments.api
+package com.jght.shipmentsassignment.framework.datasourceimpl.shipments
 
 import com.jght.shipmentsassignment.domain.models.Drivers
 import com.jght.shipmentsassignment.domain.models.Shipments
-import retrofit2.http.GET
 
-interface ShipmentsAssignmentService {
+interface ShipmentsApiDataSource {
 
-    @GET("shipments.json")
     suspend fun getAllShipments(): Shipments
 
-    @GET("drivers.json")
     suspend fun getAllDrivers(): Drivers
 }
