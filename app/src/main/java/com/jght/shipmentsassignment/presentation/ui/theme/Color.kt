@@ -1,4 +1,4 @@
-package com.jght.shipmentsassingment.ui.theme
+package com.jght.shipmentsassignment.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

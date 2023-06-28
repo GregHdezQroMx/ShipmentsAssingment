@@ -1,4 +1,4 @@
-package agency.eas.entregasframmex.data.network
+package com.jght.shipmentsassignment.framework.datasourceimpl.shipments.api
 
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent

@@ -1,4 +1,4 @@
-package com.jght.util.mixcalcbicomponent.framework.presentation.main.view.ui.models
+package com.jght.shipmentsassignment.presentation.ui.models
 
 data class MyInputTextModelUI(
     val value: String = "",

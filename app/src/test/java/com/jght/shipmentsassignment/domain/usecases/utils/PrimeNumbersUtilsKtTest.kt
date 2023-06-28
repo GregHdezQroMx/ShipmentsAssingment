@@ -1,4 +1,4 @@
-package com.jght.shipmentsassingment.domain.usecases.utils
+package com.jght.shipmentsassignment.domain.usecases.utils
 
 import org.junit.Assert.*
 
@@ -10,17 +10,29 @@ class PrimeNumbersUtilsKtTest {
     fun getFirstPrimeCommonFactor() {
         var number1 = 9
         var number2 = 18
-        var primeCommonFactor = getFirstPrimeCommonFactor(number1, number2)
+        var primeCommonFactor =
+            getFirstPrimeCommonFactor(
+                number1,
+                number2
+            )
         assertEquals(3, primeCommonFactor)
 
         number1 = 5
         number2 = 24
-        primeCommonFactor = getFirstPrimeCommonFactor(number1, number2)
+        primeCommonFactor =
+            getFirstPrimeCommonFactor(
+                number1,
+                number2
+            )
         assertEquals(1, primeCommonFactor)
 
         number1 = 8
         number2 = 24
-        primeCommonFactor = getFirstPrimeCommonFactor(number1, number2)
+        primeCommonFactor =
+            getFirstPrimeCommonFactor(
+                number1,
+                number2
+            )
         assertEquals(2, primeCommonFactor)
     }
 
